@@ -1,10 +1,33 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Container, Typography, Box, Button } from '@mui/material';
+import { styled } from '@mui/system';
+
+const RetroSwitch = styled(Button)(({ active }) => ({
+  width: '60px',
+  height: '60px',
+  borderRadius: '50%',
+  border: '3px solid #999',
+  background: active
+    ? 'radial-gradient(circle, #ff4d4d, #b30000)'
+    : 'radial-gradient(circle, #d9d9d9, #808080)',
+  color: 'white',
+  boxShadow: 'inset 0 0 10px rgba(0, 0, 0, 0.5)',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  margin: '10px',
+  fontFamily: 'Courier New, Courier, monospace',
+  fontSize: '12px',
+  '&:hover': {
+    boxShadow: '0 0 15px rgba(0, 0, 0, 0.7)',
+  },
+}));
 
 const App = () => {
   const [outputStates, setOutputStates] = useState(Array(8).fill(false));
 
-  const handleCheckboxChange = (index) => {
+  const handleButtonClick = (index) => {
     const updatedOutputs = [...outputStates];
     updatedOutputs[index] = !updatedOutputs[index];
     setOutputStates(updatedOutputs);
@@ -26,24 +49,31 @@ const App = () => {
   };
 
   return (
-    <div className="App">
-      <h1>Control de Salidas Digitales</h1>
-      <ul>
+    <Container maxWidth={false} style={{ padding: '20px', width: '100vw' }}>
+      <Typography variant="h4" component="h1" gutterBottom align="center">
+        Control de Salidas Digitales
+      </Typography>
+      <Box display="flex" justifyContent="center" flexWrap="wrap" width="100%">
         {outputStates.map((state, index) => (
-          <li key={index}>
-            <label>
-              Salida {index}:
-              <input
-                type="checkbox"
-                checked={state}
-                onChange={() => handleCheckboxChange(index)}
-              />
-            </label>
-          </li>
+          <Box key={index} textAlign="center">
+            <RetroSwitch
+              active={state}
+              onClick={() => handleButtonClick(index)}
+            >
+              {state ? 'ON' : 'OFF'}
+            </RetroSwitch>
+            <Typography variant="caption" display="block">
+              Salida {index + 1}
+            </Typography>
+          </Box>
         ))}
-      </ul>
-      <button onClick={handleSubmit}>Enviar Cambios</button>
-    </div>
+      </Box>
+      <Box display="flex" justifyContent="center" mt={2} width="100%">
+        <Button variant="contained" color="secondary" onClick={handleSubmit}>
+          Enviar Cambios
+        </Button>
+      </Box>
+    </Container>
   );
 };
 
