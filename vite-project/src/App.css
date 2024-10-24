@@ -1,0 +1,27 @@
+.App {
+  text-align: center;
+  padding: 20px;
+}
+
+.analog-section, .digital-inputs, .digital-outputs {
+  margin-bottom: 20px;
+}
+
+.gauge-container {
+  display: inline-block;
+  width: 200px;
+  margin: 10px;
+}
+
+.switch-container {
+  margin: 10px 0;
+}
+
+.active {
+  color: green;
+  font-weight: bold;
+}
+
+.inactive {
+  color: red;
+}
