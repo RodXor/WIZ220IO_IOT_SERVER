@@ -14,7 +14,7 @@ const App = () => {
     const commandParams = outputStates
       .map((state, idx) => `DO_${idx}=${state ? 'on' : 'off'}`)
       .join('&');
-    const url = `http://192.168.1.4/DOCTL.CGI?${commandParams}`;
+    const url = `/api//DOCTL.CGI?${commandParams}`;
     console.log('Comando enviado:', url);
 
     try {

@@ -5,15 +5,17 @@
 
    const app = express();
    const port = 3001;
-
+   app.use(express.json());
    // Configura CORS para permitir solicitudes desde cualquier origen
    app.use(cors());
 
    // Si prefieres permitir solo desde un origen específico, usa:
    // app.use(cors({ origin: 'http://localhost:5173' }));
 
-   app.use(express.json());
-
+   
+   app.get('/api/test', (req, res) => {
+    res.json({ message: 'Servidor funcionando correctamente' });
+  });
    const WIZ220IO_IP = '192.168.1.4';
    const WIZ220IO_PORT = 80;
 
@@ -29,7 +31,9 @@
        res.status(500).json({ message: 'Error al conectar con WIZ220IO', error: error.message });
      }
    });
-
+   app.get('/api/hello', (req, res) => {
+    res.json({ message: 'Hola desde el servidor' });
+  });
    app.listen(port, () => {
      console.log(`Servidor corriendo en http://localhost:${port}`);
    });

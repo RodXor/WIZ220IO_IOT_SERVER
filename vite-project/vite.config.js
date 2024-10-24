@@ -7,7 +7,7 @@ export default defineConfig({
       '/api': {
         target: 'http://localhost:3001', // Asegúrate de que este sea el puerto correcto de tu servidor
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, '')
+       // rewrite: (path) => path.replace(/^\/api/, '')
       }
     }
   }
