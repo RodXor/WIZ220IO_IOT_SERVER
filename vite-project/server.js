@@ -34,6 +34,12 @@
    app.get('/api/hello', (req, res) => {
     res.json({ message: 'Hola desde el servidor' });
   });
+  app.get('/api/getInitialState', (req, res) => {
+    // Simula la obtención del estado de la placa WIZ220IO
+    const initialState = { states: [false, false, false, false, false, false, false] }; // Asegúrate de que este estado refleje el estado real de la placa
+    console.log('Estado inicial enviado:', initialState);
+    res.json(initialState);
+  });
    app.listen(port, () => {
      console.log(`Servidor corriendo en http://localhost:${port}`);
    });
